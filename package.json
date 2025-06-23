@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.1.18",
+    "@greysole/spooder-component-library": "^0.1.224",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
@@ -11,8 +15,10 @@
     "@types/node": "^16.18.126",
     "@types/react": "^19.1.7",
     "@types/react-dom": "^19.1.6",
+    "@uiw/react-textarea-code-editor": "^3.1.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-hook-form": "^7.57.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
@@ -29,6 +35,7 @@
       "react-app/jest"
     ]
   },
+  "proxy": "http://192.168.1.182:3000",
   "browserslist": {
     "production": [
       ">0.2%",

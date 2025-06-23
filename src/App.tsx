@@ -1,26 +1,68 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import {
+  Box,
+  CircleLoader,
+  CustomSpooder,
+  KeyedObject,
+  Stack,
+  TypeFace,
+} from "@greysole/spooder-component-library";
+import { getShareUser } from "./Request";
+import { ShareObject, ShareUser } from "./Types";
+import MainMenu from "./MainMenu";
+import Header from "./Header";
 
-function App() {
+export default function App() {
+  const [shareUserData, setShareUserData] = useState<ShareObject | undefined>();
+  const [ownerData, setOwnerData] = useState<KeyedObject | undefined>();
+  const [statusText, setStatusText] = useState("Getting your share data...");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    getShareUser()
+      .then((data) => {
+        setOwnerData(data.owner);
+        if (data.error) {
+          setStatusText(
+            (data.error + "!" ||
+              "An error occurred while fetching share data.") +
+              ` Contact the owner: ${data.owner.ownerName} for help.`
+          );
+          setIsLoading(false);
+          return;
+        }
+        setShareUserData(data.share);
+      })
+      .catch((e) => {
+        setStatusText(e);
+      });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box flexFlow="column" width="100vw" height="100dvh">
+      <Header ownerInfo={ownerData} shareInfo={shareUserData} />
+      <Box
+        width="100%"
+        height="100%"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Stack spacing="medium" align="center">
+          <CustomSpooder />
+          {shareUserData && ownerData ? (
+            <MainMenu ownerInfo={ownerData} shareInfo={shareUserData} />
+          ) : (
+            <Stack spacing="small" align="center">
+              <TypeFace fontSize="large">{statusText}</TypeFace>
+              {isLoading ? (
+                <Box>
+                  <CircleLoader />
+                </Box>
+              ) : null}
+            </Stack>
+          )}
+        </Stack>
+      </Box>
+    </Box>
   );
 }
-
-export default App;
