@@ -6,13 +6,10 @@ import {
   FormTextInput,
   FormTextAreaInput,
   FormNumberInput,
-  translateCondition,
   Box,
   TypeFace,
   KeyedObject,
 } from "@greysole/spooder-component-library";
-import React from "react";
-import { useFormContext } from "react-hook-form";
 import { usePluginSettingsContext } from "../context/PluginSettingsContext";
 import FormAssetSelect from "../form/FormAssetSelect";
 import FormCodeInput from "../form/FormCodeInput";

@@ -8,9 +8,9 @@ import {
 } from "@greysole/spooder-component-library";
 import PluginSettingsContextProvider from "./context/PluginSettingsContext";
 import SettingsFormContextProvider from "./context/SettingsFormContext";
-import SettingsFormModal from "./SettingsFormModal";
 import { getPluginSettings } from "../Request";
 import PluginInputsList from "./pluginInput/PluginInputsList";
+import SettingsFormModal from "./SettingsFormModal";
 
 export default function SettingsForm(props: PluginComponentProps) {
   const { pluginName } = props;
@@ -62,11 +62,7 @@ export default function SettingsForm(props: PluginComponentProps) {
       defaults={defaults}
     >
       <SettingsFormContextProvider values={values}>
-        <Box flexFlow="column" padding="medium">
-          <Stack spacing="medium">
-            <PluginInputsList />
-          </Stack>
-        </Box>
+        <SettingsFormModal />
       </SettingsFormContextProvider>
     </PluginSettingsContextProvider>
   );

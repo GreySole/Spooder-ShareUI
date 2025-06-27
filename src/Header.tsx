@@ -1,13 +1,8 @@
-import { faTimes, faBars } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
 import {
   Box,
   CustomSpooder,
-  Icon,
   KeyedObject,
   TypeFace,
-  useTheme,
 } from "@greysole/spooder-component-library";
 import { ShareObject } from "./Types";
 

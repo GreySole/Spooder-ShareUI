@@ -134,7 +134,7 @@ export function getPluginAssets(
       body: JSON.stringify({
         key: shareKey,
         pluginName: pluginName,
-        folderPath: folderPath ? folderPath : "/",
+        folder: folderPath ? folderPath : "/",
       }),
     })
       .then((response) => response.json())
@@ -157,16 +157,16 @@ export function uploadPluginAsset(
   const urlParams = new URLSearchParams(window.location.search);
   const shareKey = urlParams.get("key");
   const fd = new FormData();
-  fd.append("shareKey", shareKey || "");
+  fd.append("key", shareKey || "");
   fd.append("pluginName", pluginName);
-  fd.append("folderPath", folderPath || "/");
+  fd.append("assetPath", folderPath || "/");
   if (files && files.length > 0) {
     for (let i = 0; i < files.length; i++) {
       fd.append("files", files[i]);
     }
   }
   return new Promise((res, rej) => {
-    fetch(`/shares/browse_share_plugin_assets`, {
+    fetch(`/shares/upload_share_plugin_asset`, {
       method: "POST",
       headers: {},
       body: fd,
@@ -190,7 +190,7 @@ export function savePluginSettings(
   const urlParams = new URLSearchParams(window.location.search);
   const shareKey = urlParams.get("key");
   return new Promise((res, rej) => {
-    fetch(`/shares/save_plugin_settings`, {
+    fetch(`/shares/save_share_plugin_settings`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -199,7 +199,7 @@ export function savePluginSettings(
       body: JSON.stringify({
         key: shareKey,
         pluginName: pluginName,
-        settings: settings,
+        new_settings: settings,
       }),
     })
       .then((response) => response.json())

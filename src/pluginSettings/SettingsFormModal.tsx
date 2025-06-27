@@ -2,21 +2,19 @@ import { Box, Modal, Stack } from "@greysole/spooder-component-library";
 import PluginSettingsSaveButton from "./PluginSettingsSaveButton";
 import { usePluginSettingsContext } from "./context/PluginSettingsContext";
 import PluginInputsList from "./pluginInput/PluginInputsList";
+import { MainMenuType, useShareMenu } from "./context/MainMenuContext";
+import { usePluginModalContext } from "../modals/context/PluginModalContext";
 
-interface SettingsFormModalProps {
-  isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
-}
-
-export default function SettingsFormModal(props: SettingsFormModalProps) {
-  const { isOpen, setIsOpen } = props;
+export default function SettingsFormModal() {
   const { pluginName } = usePluginSettingsContext();
+  const { editModalPluginName, closeEditModal } = usePluginModalContext();
+  const { shareModalOpen, setShareModalOpen } = useShareMenu();
 
   return (
     <Modal
-      isOpen={isOpen}
+      isOpen={pluginName === editModalPluginName}
       onClose={() => {
-        setIsOpen(false);
+        closeEditModal();
       }}
       title={pluginName}
       content={

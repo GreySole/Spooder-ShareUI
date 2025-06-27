@@ -2,6 +2,7 @@ import {
   SpooderPet,
   ThemeProvider,
   ThemeVariables,
+  TooltipProvider,
 } from "@greysole/spooder-component-library";
 import { useEffect, useState } from "react";
 import { getSpooder, getTheme } from "./Request";
@@ -32,7 +33,9 @@ export default function InitLayer() {
   }
   return (
     <ThemeProvider theme={theme} spooder={spooder}>
-      <App />
+      <TooltipProvider>
+        <App />
+      </TooltipProvider>
     </ThemeProvider>
   );
 }

@@ -8,9 +8,10 @@ import {
   TypeFace,
 } from "@greysole/spooder-component-library";
 import { getShareUser } from "./Request";
-import { ShareObject, ShareUser } from "./Types";
+import { ShareObject } from "./Types";
 import MainMenu from "./MainMenu";
 import Header from "./Header";
+import { MainMenuProvider } from "./pluginSettings/context/MainMenuContext";
 
 export default function App() {
   const [shareUserData, setShareUserData] = useState<ShareObject | undefined>();
@@ -50,7 +51,7 @@ export default function App() {
         <Stack spacing="medium" align="center">
           <CustomSpooder />
           {shareUserData && ownerData ? (
-            <MainMenu ownerInfo={ownerData} shareInfo={shareUserData} />
+            <MainMenuProvider ownerInfo={ownerData} shareInfo={shareUserData} />
           ) : (
             <Stack spacing="small" align="center">
               <TypeFace fontSize="large">{statusText}</TypeFace>
