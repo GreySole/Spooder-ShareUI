@@ -12,21 +12,18 @@ import {
   faGear,
   faPlug,
 } from "@fortawesome/free-solid-svg-icons";
-import CommandModalContent from "./modals/CommandModalContent";
-import PluginModalContent from "./modals/PluginModalContent";
-import SettingsModalContent from "./modals/SettingsModalContent";
 import { useState } from "react";
+import CommandModal from "./modals/CommandModal";
+import PluginModal from "./modals/PluginModal";
+import SettingsModal from "./modals/SettingsModal";
+import {
+  MainMenuType,
+  useShareMenu,
+} from "./pluginSettings/context/MainMenuContext";
 
-interface MainMenuProps {
-  ownerInfo: KeyedObject;
-  shareInfo: ShareObject;
-}
+export default function MainMenu() {
+  const { ownerInfo, shareInfo, setShareModalOpen } = useShareMenu();
 
-export default function MainMenu(props: MainMenuProps) {
-  const { ownerInfo, shareInfo } = props;
-  const [commandModalOpen, setCommandModalOpen] = useState(false);
-  const [pluginModalOpen, setPluginModalOpen] = useState(false);
-  const [settingsModalOpen, setSettingsModalOpen] = useState(false);
   console.log("MainMenu", ownerInfo, shareInfo);
   const share = shareInfo.share as ShareUser;
   const commandCount = Object.keys(share.commands).length;
@@ -34,38 +31,9 @@ export default function MainMenu(props: MainMenuProps) {
 
   return (
     <Stack spacing="small" align="center">
-      <Modal
-        title="Commands"
-        content={<CommandModalContent commands={share.commands} />}
-        onClose={() => {
-          setCommandModalOpen(false);
-        }}
-        isOpen={commandModalOpen}
-      />
-      <Modal
-        title="Plugins"
-        content={<PluginModalContent plugins={share.plugins} />}
-        onClose={() => {
-          setPluginModalOpen(false);
-        }}
-        isOpen={pluginModalOpen}
-      />
-      <Modal
-        title="Settings"
-        content={
-          <SettingsModalContent
-            settings={{
-              name: share.name,
-              joinMessage: share.joinMessage,
-              leaveMessage: share.leaveMessage,
-            }}
-          />
-        }
-        onClose={() => {
-          setSettingsModalOpen(false);
-        }}
-        isOpen={settingsModalOpen}
-      />
+      <CommandModal />
+      <PluginModal />
+      <SettingsModal />
       <TypeFace fontSize="large">Welcome {share.name}!</TypeFace>
       <TypeFace>
         {ownerInfo.ownerName} shared{" "}
@@ -78,14 +46,14 @@ export default function MainMenu(props: MainMenuProps) {
           <Button
             icon={faCommentDots}
             label="Commands"
-            onClick={() => setCommandModalOpen(true)}
+            onClick={() => setShareModalOpen(MainMenuType.COMMANDS)}
           />
         </Box>
         <Box padding="small">
           <Button
             icon={faPlug}
             label="Plugins"
-            onClick={() => setPluginModalOpen(true)}
+            onClick={() => setShareModalOpen(MainMenuType.PLUGINS)}
           />
         </Box>
 
@@ -93,7 +61,7 @@ export default function MainMenu(props: MainMenuProps) {
           <Button
             icon={faGear}
             label="Settings"
-            onClick={() => setSettingsModalOpen(true)}
+            onClick={() => setShareModalOpen(MainMenuType.SETTINGS)}
           />
         </Box>
       </Box>
