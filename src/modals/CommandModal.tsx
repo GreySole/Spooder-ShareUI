@@ -1,22 +1,27 @@
-import { KeyedObject, Modal } from "@greysole/spooder-component-library";
-import { useState } from "react";
+import { Box, Modal } from "@greysole/spooder-component-library";
 import CommandModalContent from "./CommandModalContent";
-import {
-  MainMenuType,
-  useShareMenu,
-} from "../pluginSettings/context/MainMenuContext";
+import { useShareMenu } from "../pluginSettings/context/MainMenuContext";
+import CommandsModalForm from "./form/CommandModalForm";
+import CommandSaveButton from "./form/CommandSaveButton";
 
 export default function CommandModal() {
-  const { shareInfo, shareModalOpen, setShareModalOpen } = useShareMenu();
+  const { shareInfo, setShareModalOpen } = useShareMenu();
 
   return (
-    <Modal
-      title="Commands"
-      content={<CommandModalContent commands={shareInfo.share.ommands} />}
-      onClose={() => {
-        setShareModalOpen(null);
-      }}
-      isOpen={shareModalOpen === MainMenuType.COMMANDS}
-    />
+    <CommandsModalForm commands={shareInfo.share.commands}>
+      <Modal
+        title="Commands"
+        content={<CommandModalContent />}
+        onClose={() => {
+          setShareModalOpen(null);
+        }}
+        isOpen={true}
+        footerContent={
+          <Box width="100%" justifyContent="flex-end">
+            <CommandSaveButton />
+          </Box>
+        }
+      />
+    </CommandsModalForm>
   );
 }

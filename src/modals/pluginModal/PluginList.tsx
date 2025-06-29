@@ -1,4 +1,4 @@
-import { faGear } from "@fortawesome/free-solid-svg-icons";
+import { faClipboard, faGear } from "@fortawesome/free-solid-svg-icons";
 import {
   KeyedObject,
   Stack,
@@ -8,6 +8,8 @@ import {
   TypeFace,
   BoolSwitch,
   Button,
+  Columns,
+  LinkButton,
 } from "@greysole/spooder-component-library";
 import { useState, useEffect } from "react";
 import { getSharedPlugins } from "../../Request";
@@ -21,6 +23,16 @@ export default function PluginList() {
       setSharedPlugins(pluginData);
     });
   }, []);
+
+  function generateOverlayLink(
+    type: "overlay" | "utility",
+    pluginName: string
+  ): string {
+    const host = window.location.host;
+    const key = new URLSearchParams(window.location.search).get("key");
+
+    return `${host}/${type}/${pluginName}?key=${key}`;
+  }
 
   return (
     <Stack spacing="medium" padding="small">
@@ -55,13 +67,29 @@ export default function PluginList() {
                   value={isEnabled}
                   onChange={(value) => togglePlugin(pluginName)}
                 />
-                <Box>
+                <Columns spacing="medium">
+                  {sharedPlugins[pluginName].hasOverlay ? (
+                    <LinkButton
+                      mode="copy"
+                      label="Overlay"
+                      iconSize="large"
+                      link={generateOverlayLink("overlay", pluginName)}
+                    />
+                  ) : null}
+                  {sharedPlugins[pluginName].hasUtility ? (
+                    <LinkButton
+                      mode="newtab"
+                      label="Utility"
+                      iconSize="large"
+                      link={generateOverlayLink("utility", pluginName)}
+                    />
+                  ) : null}
                   <Button
                     icon={faGear}
                     iconSize="large"
                     onClick={() => openEditModal(pluginName)}
                   />
-                </Box>
+                </Columns>
               </Stack>
             </Box>
           </Border>

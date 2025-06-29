@@ -58,7 +58,7 @@ export default function PluginInput(props: PluginInputProps) {
           />
         );
       case "code":
-        return <FormCodeInput formKey={formKey} label={label} />;
+        return null;
       case "text":
         return <FormTextInput formKey={formKey} label={label} />;
       case "number":

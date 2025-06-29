@@ -51,7 +51,9 @@ export default function App() {
         <Stack spacing="medium" align="center">
           <CustomSpooder />
           {shareUserData && ownerData ? (
-            <MainMenuProvider ownerInfo={ownerData} shareInfo={shareUserData} />
+            <MainMenuProvider ownerInfo={ownerData} shareInfo={shareUserData}>
+              <MainMenu />
+            </MainMenuProvider>
           ) : (
             <Stack spacing="small" align="center">
               <TypeFace fontSize="large">{statusText}</TypeFace>
