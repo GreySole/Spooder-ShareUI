@@ -1,29 +1,28 @@
-import { KeyedObject, Modal } from "@greysole/spooder-component-library";
-import { useState } from "react";
+import { Modal } from "@greysole/spooder-component-library";
 import SettingsModalContent from "./SettingsModalContent";
-import {
-  MainMenuType,
-  useShareMenu,
-} from "../pluginSettings/context/MainMenuContext";
+import { useShareMenu } from "../pluginSettings/context/MainMenuContext";
+import SettingsModalForm from "./form/SettingsModalForm";
+import SettingsSaveButton from "./form/SettingsSaveButton";
 
 export default function SettingsModal() {
-  const { shareInfo, shareModalOpen, setShareModalOpen } = useShareMenu();
+  const { shareInfo, setShareModalOpen } = useShareMenu();
   return (
-    <Modal
-      title="Settings"
-      content={
-        <SettingsModalContent
-          settings={{
-            name: shareInfo.share.name,
-            joinMessage: shareInfo.share.joinMessage,
-            leaveMessage: shareInfo.share.leaveMessage,
-          }}
-        />
-      }
-      onClose={() => {
-        setShareModalOpen(null);
+    <SettingsModalForm
+      settings={{
+        name: shareInfo.share.name,
+        joinMessage: shareInfo.share.joinMessage,
+        leaveMessage: shareInfo.share.leaveMessage,
       }}
-      isOpen={shareModalOpen === MainMenuType.SETTINGS}
-    />
+    >
+      <Modal
+        title="Settings"
+        content={<SettingsModalContent />}
+        onClose={() => {
+          setShareModalOpen(null);
+        }}
+        isOpen={true}
+        footerContent={<SettingsSaveButton />}
+      />
+    </SettingsModalForm>
   );
 }

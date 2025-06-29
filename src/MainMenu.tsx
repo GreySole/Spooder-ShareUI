@@ -22,7 +22,8 @@ import {
 } from "./pluginSettings/context/MainMenuContext";
 
 export default function MainMenu() {
-  const { ownerInfo, shareInfo, setShareModalOpen } = useShareMenu();
+  const { ownerInfo, shareInfo, shareModalOpen, setShareModalOpen } =
+    useShareMenu();
 
   console.log("MainMenu", ownerInfo, shareInfo);
   const share = shareInfo.share as ShareUser;
@@ -31,9 +32,9 @@ export default function MainMenu() {
 
   return (
     <Stack spacing="small" align="center">
-      <CommandModal />
-      <PluginModal />
-      <SettingsModal />
+      {shareModalOpen === MainMenuType.COMMANDS ? <CommandModal /> : null}
+      {shareModalOpen === MainMenuType.PLUGINS ? <PluginModal /> : null}
+      {shareModalOpen === MainMenuType.SETTINGS ? <SettingsModal /> : null}
       <TypeFace fontSize="large">Welcome {share.name}!</TypeFace>
       <TypeFace>
         {ownerInfo.ownerName} shared{" "}

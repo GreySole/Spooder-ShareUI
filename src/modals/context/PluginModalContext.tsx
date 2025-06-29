@@ -6,6 +6,7 @@ import {
   MainMenuType,
   useShareMenu,
 } from "../../pluginSettings/context/MainMenuContext";
+import { toggleSharedPlugin } from "../../Request";
 
 interface PluginModalContextType {
   plugins: { [key: string]: boolean };
@@ -52,10 +53,12 @@ export default function PluginModalContextProvider(
   };
 
   const togglePlugin = (pluginName: string) => {
-    setPlugins((prev) => ({
-      ...prev,
-      [pluginName]: !prev[pluginName],
-    }));
+    toggleSharedPlugin(pluginName, !plugins[pluginName]).then(() => {
+      setPlugins((prev) => ({
+        ...prev,
+        [pluginName]: !prev[pluginName],
+      }));
+    });
   };
 
   const value: PluginModalContextType = {
@@ -75,7 +78,7 @@ export default function PluginModalContextProvider(
           content={<PluginList />}
           title="Plugins"
           onClose={() => setShareModalOpen(null)}
-          isOpen={shareModalOpen === MainMenuType.PLUGINS}
+          isOpen={true}
         />
       )}
     </PluginModalContext.Provider>

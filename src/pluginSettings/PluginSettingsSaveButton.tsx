@@ -1,4 +1,8 @@
-import { SaveButton } from "@greysole/spooder-component-library";
+import {
+  SaveButton,
+  ToastType,
+  useToast,
+} from "@greysole/spooder-component-library";
 import React from "react";
 import { useFormContext } from "react-hook-form";
 import { savePluginSettings } from "../Request";
@@ -7,6 +11,7 @@ import { usePluginSettingsContext } from "./context/PluginSettingsContext";
 export default function PluginSettingsSaveButton() {
   const { getValues } = useFormContext();
   const { pluginName } = usePluginSettingsContext();
+  const { showToast } = useToast();
 
   function saveSettings() {
     const newSettings = structuredClone(getValues());
@@ -20,7 +25,19 @@ export default function PluginSettingsSaveButton() {
         delete newSettings[key]._name_changes;
       }
     }
-    savePluginSettings(pluginName, newSettings).then(() => {});
+    savePluginSettings(pluginName, newSettings)
+      .then(() => {
+        showToast(
+          `${pluginName} settings saved successfully!`,
+          ToastType.SUCCESS
+        );
+      })
+      .catch((error) => {
+        showToast(
+          `Failed to save ${pluginName} settings: ${error.message}`,
+          ToastType.ERROR
+        );
+      });
   }
 
   return <SaveButton saveFunction={saveSettings} />;

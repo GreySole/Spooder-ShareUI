@@ -25,11 +25,12 @@ const MainMenuContext = createContext<MainMenuContextType | undefined>(
 interface MainMenuProviderProps {
   ownerInfo: KeyedObject;
   shareInfo: ShareObject;
+  children: ReactNode;
 }
 
 // Provider component
 export function MainMenuProvider(props: MainMenuProviderProps) {
-  const { ownerInfo, shareInfo } = props;
+  const { ownerInfo, shareInfo, children } = props;
   const [shareModalOpen, setShareModalOpen] = useState<MainMenuType | null>(
     null
   );
@@ -40,7 +41,7 @@ export function MainMenuProvider(props: MainMenuProviderProps) {
     <MainMenuContext.Provider
       value={{ ownerInfo, shareInfo, shareModalOpen, setShareModalOpen }}
     >
-      <MainMenu />
+      {children}
     </MainMenuContext.Provider>
   );
 }

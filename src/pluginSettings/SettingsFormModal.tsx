@@ -2,13 +2,11 @@ import { Box, Modal, Stack } from "@greysole/spooder-component-library";
 import PluginSettingsSaveButton from "./PluginSettingsSaveButton";
 import { usePluginSettingsContext } from "./context/PluginSettingsContext";
 import PluginInputsList from "./pluginInput/PluginInputsList";
-import { MainMenuType, useShareMenu } from "./context/MainMenuContext";
 import { usePluginModalContext } from "../modals/context/PluginModalContext";
 
 export default function SettingsFormModal() {
   const { pluginName } = usePluginSettingsContext();
   const { editModalPluginName, closeEditModal } = usePluginModalContext();
-  const { shareModalOpen, setShareModalOpen } = useShareMenu();
 
   return (
     <Modal

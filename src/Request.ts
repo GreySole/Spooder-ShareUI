@@ -213,3 +213,102 @@ export function savePluginSettings(
       });
   });
 }
+
+export function saveShareSettings(settings: {
+  [key: string]: string;
+}): Promise<KeyedObject> {
+  const urlParams = new URLSearchParams(window.location.search);
+  const shareKey = urlParams.get("key");
+  return new Promise((res, rej) => {
+    fetch(`/shares/save_share_settings`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        key: shareKey,
+        name: settings.name,
+        joinMessage: settings.joinMessage,
+        leaveMessage: settings.leaveMessage,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data: KeyedObject) => {
+        console.log("GOT Share Settings", data);
+        res(data);
+      })
+      .catch((e) => {
+        console.error("ERROR", e);
+        rej(e);
+      });
+  });
+}
+
+export function saveSharedCommands(commands: {
+  [key: string]: string;
+}): Promise<KeyedObject> {
+  const urlParams = new URLSearchParams(window.location.search);
+  const shareKey = urlParams.get("key");
+  return new Promise((res, rej) => {
+    fetch(`/shares/save_shared_commands`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        key: shareKey,
+        new_commands: commands,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data: KeyedObject) => {
+        console.log("GOT Share Commands", data);
+        res(data);
+      })
+      .catch((e) => {
+        console.error("ERROR", e);
+        rej(e);
+      });
+  });
+}
+
+export function toggleSharedPlugin(
+  pluginName: string,
+  enable: boolean
+): Promise<KeyedObject> {
+  const urlParams = new URLSearchParams(window.location.search);
+  const shareKey = urlParams.get("key");
+  console.log(
+    "Toggling plugin",
+    pluginName,
+    "to",
+    enable,
+    "for share key",
+    shareKey
+  );
+  return new Promise((res, rej) => {
+    fetch(`/shares/toggle_shared_plugin`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        key: shareKey,
+        pluginName: pluginName,
+        enable: enable,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data: KeyedObject) => {
+        console.log("GOT Toggle Shared Plugin", data);
+        res(data);
+      })
+      .catch((e) => {
+        console.error("ERROR", e);
+        rej(e);
+      });
+  });
+}
