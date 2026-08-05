@@ -6,7 +6,7 @@ import {
   KeyedObject,
   Stack,
   TypeFace,
-} from "@greysole/spooder-component-library";
+} from "@spooder/webui-component-library";
 import { getShareUser } from "./Request";
 import { ShareObject } from "./Types";
 import MainMenu from "./MainMenu";

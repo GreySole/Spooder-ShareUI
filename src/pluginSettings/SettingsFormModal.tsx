@@ -1,4 +1,4 @@
-import { Box, Modal, Stack } from "@greysole/spooder-component-library";
+import { Box, Modal, Stack } from "@spooder/webui-component-library";
 import PluginSettingsSaveButton from "./PluginSettingsSaveButton";
 import { usePluginSettingsContext } from "./context/PluginSettingsContext";
 import PluginInputsList from "./pluginInput/PluginInputsList";

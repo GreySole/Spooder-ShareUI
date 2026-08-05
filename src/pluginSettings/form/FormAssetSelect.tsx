@@ -8,7 +8,7 @@ import {
   FormSelectDropdown,
   KeyedObject,
   TypeFace,
-} from "@greysole/spooder-component-library";
+} from "@spooder/webui-component-library";
 import { getPluginAssets, uploadPluginAsset } from "../../Request";
 
 interface FormAssetSelectProps {

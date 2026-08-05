@@ -12,7 +12,7 @@ import {
   Box,
   TypeFace,
   KeyedObject,
-} from "@greysole/spooder-component-library";
+} from "@spooder/webui-component-library";
 import { usePluginSettingsContext } from "../context/PluginSettingsContext";
 import PluginMultiInputValueArray from "./PluginMultiInputValueArray";
 import AssetSelect from "../input/AssetSelect";

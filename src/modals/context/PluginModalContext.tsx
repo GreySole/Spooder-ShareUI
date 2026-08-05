@@ -1,7 +1,7 @@
 import React, { createContext, ReactNode, useContext, useState } from "react";
 import SettingsForm from "../../pluginSettings/SettingsForm";
 import PluginList from "../pluginModal/PluginList";
-import { Modal } from "@greysole/spooder-component-library";
+import { Modal } from "@spooder/webui-component-library";
 import {
   MainMenuType,
   useShareMenu,

@@ -1,4 +1,4 @@
-import { Modal } from "@greysole/spooder-component-library";
+import { Modal } from "@spooder/webui-component-library";
 import SettingsModalContent from "./SettingsModalContent";
 import { useShareMenu } from "../pluginSettings/context/MainMenuContext";
 import SettingsModalForm from "./form/SettingsModalForm";

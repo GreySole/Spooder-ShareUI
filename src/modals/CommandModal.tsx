@@ -1,4 +1,4 @@
-import { Box, Modal } from "@greysole/spooder-component-library";
+import { Box, Modal } from "@spooder/webui-component-library";
 import CommandModalContent from "./CommandModalContent";
 import { useShareMenu } from "../pluginSettings/context/MainMenuContext";
 import CommandsModalForm from "./form/CommandModalForm";

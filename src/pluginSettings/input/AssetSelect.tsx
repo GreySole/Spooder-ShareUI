@@ -6,7 +6,7 @@ import {
   Button,
   KeyedObject,
   SelectDropdown,
-} from "@greysole/spooder-component-library";
+} from "@spooder/webui-component-library";
 import { getPluginAssets, uploadPluginAsset } from "../../Request";
 
 interface AssetSelectProps {

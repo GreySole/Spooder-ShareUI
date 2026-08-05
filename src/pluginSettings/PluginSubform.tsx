@@ -12,7 +12,7 @@ import {
   FormTextInput,
   FormSelectDropdown,
   KeyedObject,
-} from "@greysole/spooder-component-library";
+} from "@spooder/webui-component-library";
 import { useFormContext } from "react-hook-form";
 import PluginMultiInput from "./pluginInput/PluginMultiInput";
 import { usePluginSettingsContext } from "./context/PluginSettingsContext";

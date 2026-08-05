@@ -5,7 +5,7 @@ import {
   TooltipProvider,
   SpooderPetPair,
   ToastProvider,
-} from "@greysole/spooder-component-library";
+} from "@spooder/webui-component-library";
 import { useEffect, useState } from "react";
 import { getSpooder, getTheme } from "./Request";
 import App from "./App";

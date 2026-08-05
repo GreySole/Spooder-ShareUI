@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { useForm, FormProvider } from "react-hook-form";
-import { KeyedObject } from "@greysole/spooder-component-library";
+import { KeyedObject } from "@spooder/webui-component-library";
 
 interface SettingsFormContextProps {
   values: KeyedObject;

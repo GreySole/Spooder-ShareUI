@@ -10,7 +10,7 @@ import {
   Button,
   Columns,
   LinkButton,
-} from "@greysole/spooder-component-library";
+} from "@spooder/webui-component-library";
 import { useState, useEffect } from "react";
 import { getSharedPlugins } from "../../Request";
 import { usePluginModalContext } from "../context/PluginModalContext";

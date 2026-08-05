@@ -6,7 +6,7 @@ import {
   Columns,
   Stack,
   TypeFace,
-} from "@greysole/spooder-component-library";
+} from "@spooder/webui-component-library";
 interface TextInputProps {
   formKey: string;
   label?: string;

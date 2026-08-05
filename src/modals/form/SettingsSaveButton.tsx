@@ -5,7 +5,7 @@ import {
   ToastType,
   TooltipProvider,
   useToast,
-} from "@greysole/spooder-component-library";
+} from "@spooder/webui-component-library";
 import { saveShareSettings } from "../../Request";
 import { useFormContext } from "react-hook-form";
 

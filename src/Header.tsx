@@ -3,7 +3,7 @@ import {
   CustomSpooder,
   KeyedObject,
   TypeFace,
-} from "@greysole/spooder-component-library";
+} from "@spooder/webui-component-library";
 import { ShareObject } from "./Types";
 
 interface MainMenuProps {

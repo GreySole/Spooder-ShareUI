@@ -1,7 +1,7 @@
 import React from "react";
 import { faCommentDots } from "@fortawesome/free-solid-svg-icons";
 import { useFormContext } from "react-hook-form";
-import { Box, Button, useTheme } from "@greysole/spooder-component-library";
+import { Box, Button, useTheme } from "@spooder/webui-component-library";
 
 export default function CommandToggleGrid() {
   const { watch, setValue } = useFormContext();

@@ -5,7 +5,7 @@ import {
   KeyedObject,
   PluginComponentProps,
   Stack,
-} from "@greysole/spooder-component-library";
+} from "@spooder/webui-component-library";
 import PluginSettingsContextProvider from "./context/PluginSettingsContext";
 import SettingsFormContextProvider from "./context/SettingsFormContext";
 import { getPluginSettings } from "../Request";

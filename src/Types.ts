@@ -1,4 +1,4 @@
-import { KeyedObject } from "@greysole/spooder-component-library";
+import { KeyedObject } from "@spooder/webui-component-library";
 
 export interface ShareUserResponse {
   owner: KeyedObject;

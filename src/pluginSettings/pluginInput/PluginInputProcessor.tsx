@@ -1,4 +1,4 @@
-import { translateCondition } from "@greysole/spooder-component-library";
+import { translateCondition } from "@spooder/webui-component-library";
 import { useFormContext } from "react-hook-form";
 import { usePluginSettingsContext } from "../context/PluginSettingsContext";
 import React from "react";

@@ -1,4 +1,4 @@
-import { FormTextInput, Stack } from "@greysole/spooder-component-library";
+import { FormTextInput, Stack } from "@spooder/webui-component-library";
 import { useForm, FormProvider } from "react-hook-form";
 
 export default function SettingsModalContent() {

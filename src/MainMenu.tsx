@@ -5,7 +5,7 @@ import {
   Modal,
   Stack,
   TypeFace,
-} from "@greysole/spooder-component-library";
+} from "@spooder/webui-component-library";
 import { ShareObject, ShareUser } from "./Types";
 import {
   faCommentDots,

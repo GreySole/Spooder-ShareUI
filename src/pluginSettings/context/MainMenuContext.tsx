@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
 import MainMenu from "../../MainMenu";
-import { KeyedObject } from "@greysole/spooder-component-library";
+import { KeyedObject } from "@spooder/webui-component-library";
 import { ShareObject } from "../../Types";
 
 // Define the shape of the context value
